@@ -42,5 +42,9 @@ class ApplicationController < Sinatra::Base
          redirect to "/#{current_user.slug}"
        end
      end
+
+     def url_date
+       
+     end
   end
 end

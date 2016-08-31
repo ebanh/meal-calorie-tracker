@@ -39,6 +39,7 @@ class UserController < ApplicationController
     if user.save
       redirect to "/#{user.slug}"
     else
+      flash[:message] = "please fill out the entire form to create your account"
       redirect to "/signup"
     end
   end

@@ -27,6 +27,13 @@ class UserController < ApplicationController
   end
 
   post '/signup' do
+    if User.find_by(params[:username])
+      flash[:message] = "username is already in use"
+      redirect "/signup"
+    elsif User.find_by(params[:email])
+      flash[:message] = "email is already in use"
+      redirect "/signup"
+    end
     user = User.create(params)
     session[:user_id] = user.id
     if user.save

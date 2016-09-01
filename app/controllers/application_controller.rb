@@ -21,26 +21,36 @@ class ApplicationController < Sinatra::Base
 
   helpers do
 
-     def logged_in?
-       !!session[:user_id]
-     end
+    def logged_in?
+     !!session[:user_id]
+    end
 
-     def current_user
-       User.find(session[:user_id])
-     end
+    def current_user
+     User.find(session[:user_id])
+    end
 
-     def redirect_if_not_logged_in
-       if !logged_in?
-         flash[:message] = "You need to be logged in to do that."
-         redirect to "/login"
-       end
+    def redirect_if_not_logged_in
+     if !logged_in?
+       flash[:message] = "You need to be logged in to do that."
+       redirect to "/login"
      end
+    end
 
-     def redirect_if_incorrect_user(user)
-       if user != current_user
-         flash[:message] = "You are not allowed to access another user's account."
-         redirect to "/#{current_user.slug}"
-       end
+    def redirect_if_incorrect_user(user)
+     if user != current_user
+       flash[:message] = "You are not allowed to access another user's account."
+       redirect to "/#{current_user.slug}"
      end
+    end
+
+    def all_dates_one_day(user, date)
+      user.days.find_all { |day| day.date.strftime("%m%d%y") == date.strftime("%m%d%y") }
+    end
+
+    def total_calories_one_day(user, date)
+     total_calories = 0
+     all_dates_one_day(user, date).each { |day| total_calories += day.calories }
+     total_calories
+    end
   end
 end

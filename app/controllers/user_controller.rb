@@ -27,10 +27,10 @@ class UserController < ApplicationController
   end
 
   post '/signup' do
-    if User.find_by(params[:username])
+    if User.find_by(username: params[:username])
       flash[:message] = "username is already in use"
       redirect "/signup"
-    elsif User.find_by(params[:email])
+    elsif User.find_by(email: params[:email])
       flash[:message] = "email is already in use"
       redirect "/signup"
     end

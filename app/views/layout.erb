@@ -4,23 +4,21 @@
   <head>
     <meta charset="UTF-8">
     <title>Meal-Calorie Tracker</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
   </head>
   <body>
     <% if logged_in? %>
       <nav class="navbar navbar-default">
+        <span class="navbar-brand">Welcome <%= current_user.username %></span>
         <div class="container-fluid">
-          <!-- <div> -->
-              <span class="navbar-brand">Welcome <%= current_user.username %></span>
-              <button type="button" class="btn btn-default navbar-btn" onclick="location.href='/<%= current_user.slug %>/new';">Create A Meal</button>
-              <button type="button" class="btn btn-default navbar-btn" onclick="location.href='/logoff';">Log off</button>
-          <!-- </div> -->
+              <button type="button" class="btn btn-default navbar-btn float-right" onclick="location.href='/<%= current_user.slug %>/new';">Create A Meal</button>
+              <button type="button" class="btn btn-default navbar-btn float-right" onclick="location.href='/logoff';">Log off</button>
        </div>
       </nav>
     <% end %>
 
     <div class="container-fluid">
-      <h2>Meal-Calorie Tracker</h2>
+      <h2 class="indent">Meal-Calorie Tracker</h2>
 
       <% if flash.has?(:message) %>
       <div class="alert alert-warning">

@@ -1,4 +1,8 @@
 <p class="indent">
 <b>Day:</b> <i><%= @date.strftime("%B %e, %Y") %></i>
-&emsp;<b>Calorie count:</b> <i><b><%= @total_calories %></b></i>
+&emsp;<b>Calorie count:</b> <i><b><%= @total_calories_today %></b></i>
+</p>
+<p>
+  <b>Last 7 days:</b>
+  &emsp;<b>Calorie count:</b> <i><b><%= @total_week_calories %></b></i>
 </p>

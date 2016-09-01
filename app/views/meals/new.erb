@@ -1,0 +1,41 @@
+<form action="/meals" method="post">
+  <h4>Choose or Create a meal item:</h4>
+
+  <% if @user.meals.empty? %>
+  <b><i class="alert alert-warning">You have not created any meals</i></b>
+  <% end %>
+
+  <% @user.meals.each do |meal| %>
+      <input type="checkbox" name="user[meal_ids][]" value="<%= meal.id %>">
+      <%= meal.name %> - <%= meal.calories %> calories </input>
+  <% end %>
+  <br></br>
+
+  <label for="new_meal">Name:</label>
+  <input type="text" name="meal[name]" id="new_meal">
+  <br></br>
+  <label for="new_calories">Calories:</label>
+  <input type="text" name="meal[calories]" id="new_calories">
+
+  <br></br>
+  <h5>Please enter Day and meal time:</h5>
+
+  <label for="date">Date:</label>
+  <input type="date" name="day[date]" id="date" required>
+  <br></br>
+
+  <input type="radio" name="day[meal_time]" value="Breakfast" id="breakfast" required>
+  <label for="breakfast">Breakfast</label>
+
+  <input type="radio" name="day[meal_time]" value="Lunch" id="lunch" required>
+  <label for="lunch">Lunch</label>
+
+  <input type="radio" name="day[meal_time]" value="Dinner" id="dinner" required>
+  <label for="dinner">Dinner</label>
+
+  <input type="radio" name="day[meal_time]" value="Snack" id="snack" required>
+  <label for="snack">Snack</label>
+
+  <br></br>
+  <input type="submit" value="Create Meal">
+</form>

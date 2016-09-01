@@ -1,0 +1,6 @@
+<ul>List of Meal Times and Items:
+<br></br>
+<% @user.meals.each do |meal| %>
+<ul><li><%= meal.name %> - <%= meal.calories %> calories</li></ul>
+  <br>
+<% end %></ul>

@@ -24,8 +24,16 @@ class MealController < ApplicationController
       redirect to "/meals/new/#{user.slug}"
     end
     meal = user.meals.find_by(name: params[:meal][:name]) || user.meals.create(params[:meal])
-    day = Day.find_by(date: params[:day][:date], meal_time: params[:day][:meal_time]) || Day.create(params[:day])
-    user.days << day
+    day = user.days.find_by(date: params[:day][:date], meal_time: params[:day][:meal_time]) || user.days.create(params[:day])
+    day << meal
+    redirect to "/meals/list/#{user.slug}"
+  end
+
+  get "/meals/list/:slug" do
+    redirect_if_not_logged_in
+    @user = User.find_by_slug(params[:slug])
+    redirect_if_incorrect_user(@user)
+    erb :"/meals/list"
   end
 
 end

@@ -43,20 +43,19 @@ class ApplicationController < Sinatra::Base
      end
     end
 
-    def all_dates_one_day(user, date)
-      user.days.find_all { |day| day.date.strftime("%m%d%y") == date.strftime("%m%d%y") }
-    end
-
     def total_calories(user, date)
      total_calories = 0
-     all_dates_one_day(user, date).each { |day| total_calories += day.calories }
+     all_dates = user.days.find_all { |day| day.date.strftime("%m%d%y") == date.strftime("%m%d%y") }
+     meals_in_a_day = all_dates.map { |day| day.meals }.flatten
+     meals_in_a_day.each { |meal| total_calories += meal.calories }
      total_calories
     end
 
     def total_calories_last_7_days(user)
-      week_data = user.days.where(["date >= ?", 7.days.ago])
       week_calories = 0
-      week_data.each { |day| week_calories += day.calories}
+      week_data = user.days.where(["date >= ?", 7.days.ago])
+      week_meals = week_data.map { |day| day.meals }.flatten
+      week_meals.each { |meal| week_calories += meal.calories}
       week_calories
     end
   end

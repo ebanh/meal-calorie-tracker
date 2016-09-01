@@ -14,6 +14,7 @@ class UserController < ApplicationController
       session[:user_id] = user.id
       redirect to "/meals/#{user.slug}"
     else
+      flash[:message] = "Incorrect username/ password combination"
       redirect to "/login"
     end
   end

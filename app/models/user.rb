@@ -3,8 +3,7 @@ class User < ActiveRecord::Base
   extend ClassSlug
 
   has_many :meals
-  has_many :user_days
-  has_many :days, through: :user_days
+  has_many :days
 
   has_secure_password
   validates_presence_of :username

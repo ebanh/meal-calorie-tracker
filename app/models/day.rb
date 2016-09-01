@@ -1,10 +1,10 @@
 class Day < ActiveRecord::Base
   include Slug
   extend ClassSlug
-  
-  has_many :user_days
-  has_many :users, through: :user_days
-  has_many :meals, through: :users
+
+  belongs_to :user
+  has_many :meal_days
+  has_many :meals, through: :meal_days
 
   validates_presence_of :date
   validates_presence_of :meal_time

@@ -14,7 +14,18 @@ class MealController < ApplicationController
     redirect_if_not_logged_in
     @user = User.find_by_slug(params[:slug])
     redirect_if_incorrect_user(@user)
-    erb :"meals/new"  
+    erb :"meals/new"
+  end
+
+  post "/meals/:id" do
+    user = User.find(params[:id])
+    if (params[:meal][:name].empty? || params[:meal][:calories].empty?) && params[:day][:meal_ids].empty?
+      flash[:message] = "Meal information incomplete."
+      redirect to "/meals/new/#{user.slug}"
+    end
+    meal = user.meals.find_by(name: params[:meal][:name]) || user.meals.create(params[:meal])
+    day = Day.find_by(date: params[:day][:date], meal_time: params[:day][:meal_time]) || Day.create(params[:day])
+    user.days << day
   end
 
 end

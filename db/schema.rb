@@ -13,19 +13,20 @@
 ActiveRecord::Schema.define(version: 20160831132749) do
 
   create_table "days", force: :cascade do |t|
-    t.date   "date"
-    t.string "meal_time"
+    t.date    "date"
+    t.string  "meal_time"
+    t.integer "user_id"
+  end
+
+  create_table "meal_days", force: :cascade do |t|
+    t.integer "meal_id"
+    t.integer "day_id"
   end
 
   create_table "meals", force: :cascade do |t|
     t.string  "name"
     t.integer "calories"
     t.integer "user_id"
-  end
-
-  create_table "user_days", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "day_id"
   end
 
   create_table "users", force: :cascade do |t|

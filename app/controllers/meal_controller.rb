@@ -1,3 +1,5 @@
+require "pry"
+
 class MealController < ApplicationController
 
   get "/meals/:slug" do
@@ -19,13 +21,17 @@ class MealController < ApplicationController
 
   post "/meals/:id" do
     user = User.find(params[:id])
-    if (params[:meal][:name].empty? || params[:meal][:calories].empty?) && params[:day][:meal_ids].empty?
+    binding.pry
+    if (params[:meal][:name].empty? || params[:meal][:calories].empty?)
       flash[:message] = "Meal information incomplete."
       redirect to "/meals/new/#{user.slug}"
     end
-    meal = user.meals.find_by(name: params[:meal][:name]) || user.meals.create(params[:meal])
+
     day = user.days.find_by(date: params[:day][:date], meal_time: params[:day][:meal_time]) || user.days.create(params[:day])
-    day << meal
+
+    meal = user.meals.find_by(name: params[:meal][:name]) || user.meals.create(params[:meal])
+    day.meals << meal
+
     redirect to "/meals/list/#{user.slug}"
   end
 

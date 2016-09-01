@@ -2,14 +2,14 @@
 <form action="/meals/<%= @user.id %>" method="post">
   <h4>Choose or Create a meal item:</h4>
 
-  <% if @user.meals.empty? %>
+  <!-- <% if @user.meals.empty? %>
   <b><i class="alert alert-warning">You have not created any meals</i></b>
   <% end %>
 
   <% @user.meals.each do |meal| %>
-      <input type="checkbox" name="user[meal_ids][]" value="<%= meal.id %>">
+      <input type="checkbox" name="meal[meal_ids][]" value="<%= meal.id %>">
       <%= meal.name %> - <%= meal.calories %> calories </input>
-  <% end %>
+  <% end %> -->
   <br></br>
 
   <label for="new_meal">Name:</label>

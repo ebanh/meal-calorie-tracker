@@ -48,8 +48,13 @@ class MealController < ApplicationController
 
   patch "/meals/:id/edit" do
     meal = Meal.find(params[:id])
-    meal.update(params[:meal])
-    redirect to "/meals/show/#{meal.user.slug}"
+    if !params[:meal][:name].empty? && !params[:meal][:calories].empty?
+      meal.update(params[:meal])
+      redirect to "/meals/show/#{meal.user.slug}"
+    else
+      flash[:message] = "Make sure all fields are filled out."
+      redirect to "/meals/#{meal.meal_slug}/edit/#{meal.user.slug}"
+    end
   end
 
   delete "/meals/:id/delete" do

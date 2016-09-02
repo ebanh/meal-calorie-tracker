@@ -9,5 +9,5 @@ Day: <i><%= @date.strftime("%b %e, %Y") %></i>
   - Calories: <b><i><%= @total_week_calories %></b></i>
 </p>
 <br>
-&emsp;<a href="/meals/list/<%= @user.slug %>">Meal List</a>
-&emsp;<a href="/days/list/<%= @user.slug %>">Day List</a>
+&emsp;<a href="/meals/show/<%= @user.slug %>">Meal List</a>
+&emsp;<a href="/days/show/<%= @user.slug %>">Day List</a>

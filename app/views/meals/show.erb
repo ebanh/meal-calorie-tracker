@@ -1,0 +1,13 @@
+<p>&emsp;<a href="/meals/<%= @user.slug %>">Home</a>
+&emsp;<a href="/days/show/<%= @user.slug %>">Day List</a></p>
+<h4>Meal Items and Times:</h4>
+
+<ul><% @user.meals.sort_by { |m| m.name }.each do |meal| %>
+  <li><%= meal.name %> - <%= meal.calories %> calories
+  <font size=1><a href="/meals/<%= meal.meal_slug %>/<%= meal.user.slug %>/edit">edit</a></font></li>
+    <% meal.days.sort_by { |d| d.date}.reverse.each do |day| %>
+      <font size=2><i><%= day.date %> - <%= day.meal_time %></i></font>
+      <br>
+    <% end %>
+    <br>
+<% end %></ul>

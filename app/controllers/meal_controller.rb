@@ -22,9 +22,12 @@ class MealController < ApplicationController
   post "/meals/:id" do
     user = User.find(params[:id])
     day = user.days.find_by(date: params[:day][:date], meal_time: params[:day][:meal_time]) || user.days.create(params[:day])
-    meal = user.meals.where('lower(name)=?', params[:meal][:name].downcase).first
-    meal ||= user.meals.create(params[:meal])
-    day.meals << meal
+    if !params[:meal][:name].empty?
+      meal = user.meals.where('lower(name)=?', params[:meal][:name].downcase).first
+      meal ||= user.meals.create(params[:meal])
+      day.meals << meal
+    end
+    day.meal_ids << params[:day][:meal_ids] unless params[:day][:meal_ids].empty?
     redirect to "/meals/show/#{user.slug}"
   end
 

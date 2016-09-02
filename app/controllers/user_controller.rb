@@ -47,7 +47,7 @@ class UserController < ApplicationController
 
   get '/logoff' do
     session.clear
-    redirect to "/login"
+    redirect to "/"
   end
 
 end

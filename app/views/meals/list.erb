@@ -2,7 +2,7 @@ List of Meal Times and Items:
 <br></br>
 <ul><% @user.meals.sort_by { |m| m.name }.each do |meal| %>
   <li><%= meal.name %> - <%= meal.calories %> calories</li>
-    <% meal.days.each do |day| %>
+    <% meal.days.sort_by { |d| d.date}.reverse.each do |day| %>
       <%= day.date %> - <%= day.meal_time %>
       <br>
     <% end %>

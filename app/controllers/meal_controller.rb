@@ -28,10 +28,10 @@ class MealController < ApplicationController
     end
 
     day = user.days.find_by(date: params[:day][:date], meal_time: params[:day][:meal_time]) || user.days.create(params[:day])
+    meal = user.meals.where('lower(name)=?', params[:meal][:name].downcase).first
+    meal ||= user.meals.create(params[:meal])
 
-    meal = user.meals.find_by(name: params[:meal][:name]) || user.meals.create(params[:meal])
     day.meals << meal
-
     redirect to "/meals/list/#{user.slug}"
   end
 

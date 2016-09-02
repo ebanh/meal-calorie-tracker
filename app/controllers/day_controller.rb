@@ -15,4 +15,18 @@ class DayController < ApplicationController
     erb :"/days/edit"
   end
 
+  patch "/days/:id/edit" do
+    day = Day.find(params[:id])
+    day.update(params[:day])
+    redirect to "/days/show/#{day.user.slug}"
+  end
+
+  delete "/days/:id/delete" do
+    day = Day.find(params[:id])
+    user = current_user
+    day.delete
+    remove_meals_without_days
+    redirect to "/meals/show/#{user.slug}"
+  end
+
 end

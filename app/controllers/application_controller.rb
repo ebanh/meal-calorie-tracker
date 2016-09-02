@@ -66,5 +66,14 @@ class ApplicationController < Sinatra::Base
         end
       end
     end
+
+    def remove_meals_without_days
+      Meal.all.each do |meal|
+        if meal.day_ids.empty?
+          meal.delete
+        end
+      end
+    end
+
   end
 end

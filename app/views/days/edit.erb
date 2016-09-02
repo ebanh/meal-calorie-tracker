@@ -5,8 +5,9 @@
 <form action="/days/<%= @day.id %>/edit" method="post">
   <input type="hidden" id="hidden" name="_method" value="PATCH">
   <label for="date">Date:</label>
-  <input type="date" name="date" id="date" value="<%= @day.date %>" required>
+  <input type="date" name="day[date]" id="date" value="<%= @day.date %>" required>
   <br></br>
+
   <input type="radio" name="day[meal_time]" value="Breakfast" id="breakfast" required
   <%= "checked" if @day.meal_time == "Breakfast" %>>
   <label for="breakfast">Breakfast</label>
@@ -25,6 +26,7 @@
   <br></br>
   <input type="submit" value="Update Meal">
 </form>
+
 <br>
 <form action="/days/<%= @day.id %>/delete" method="post">
   <input type="hidden" id="hidden" name="_method" value="DELETE">

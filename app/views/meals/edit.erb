@@ -5,10 +5,10 @@
 <form action="/meals/<%= @meal.id %>/edit" method="post">
   <input type="hidden" id="hidden" name="_method" value="PATCH">
   <label for="name">Name:</label>
-  <input type="text" name="name" id="name" value="<%= @meal.name %>">
+  <input type="text" name="meal[name]" id="name" value="<%= @meal.name %>">
   <br></br>
   <label for="calories">Calories:</label>
-  <input type="integer" name="calories" id="calories" value="<%= @meal.calories %>">
+  <input type="integer" name="meal[calories]" id="calories" value="<%= @meal.calories %>">
   <br></br>
   <input type="submit" value="Update Meal">
 </form>

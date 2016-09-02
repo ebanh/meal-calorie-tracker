@@ -46,7 +46,7 @@ class MealController < ApplicationController
 
   patch "/meals/:id/edit" do
     meal = Meal.find(params[:id])
-    meal.update(name: params[:name], calories: params[:calories])
+    meal.update(params[:meal])
     redirect to "/meals/show/#{meal.user.slug}"
   end
 

@@ -1,3 +1,5 @@
+<p>&emsp;<a href="/meals/<%= @user.slug %>">Return</a>
+&emsp;<a href="/days/list/<%= @user.slug %>">Day List</a></p>
 List of Meal Items and Times:
 <br></br>
 <ul><% @user.meals.sort_by { |m| m.name }.each do |meal| %>

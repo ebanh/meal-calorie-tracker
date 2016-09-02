@@ -1,3 +1,6 @@
+<p>&emsp;<a href="/meals/<%= @user.slug %>">Return</a>
+&emsp;<a href="/meals/list/<%= @user.slug %>">Meal List</a></p>
+
 List of Days and Meal Items:
 <br></br>
 <ul><% @user.days.sort_by { |d| d.date }.reverse.each do |day| %>

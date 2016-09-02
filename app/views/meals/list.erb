@@ -1,4 +1,4 @@
-List of Meal Times and Items:
+List of Meal Items and Times:
 <br></br>
 <ul><% @user.meals.sort_by { |m| m.name }.each do |meal| %>
   <li><%= meal.name %> - <%= meal.calories %> calories</li>

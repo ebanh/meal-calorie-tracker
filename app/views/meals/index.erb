@@ -1,8 +1,13 @@
+<br>
 <p class="indent">
-<b>Day:</b> <i><%= @date.strftime("%B %e, %Y") %></i>
-&emsp;<b>Calorie count:</b> <i><b><%= @total_calories_today %></b></i>
+Day: <i><%= @date.strftime("%b %e, %Y") %></i>
+- Calories: <b><i><%= @total_calories_today %></b></i>
 </p>
 <p>
-  <b>Last 7 days:</b>
-  &emsp;<b>Calorie count:</b> <i><b><%= @total_week_calories %></b></i>
+  <br>
+  Last 7 days
+  - Calories: <b><i><%= @total_week_calories %></b></i>
 </p>
+<br>
+&emsp;<a href="/meals/list/<%= @user.slug %>">Meal List</a>
+&emsp;<a href="/days/list/<%= @user.slug %>">Day List</a>

@@ -1,0 +1,10 @@
+List of Days and Meal Items:
+<br></br>
+<ul><% @user.days.sort_by { |d| d.date }.reverse.each do |day| %>
+  <li><%= day.date %> - <%= day.meal_time %></li>
+    <% day.meals.each do |meal| %>
+      <%= meal.name %> - <%= meal.calories %>
+      <br>
+    <% end %>
+    <br>
+<% end %></ul>

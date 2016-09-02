@@ -1,6 +1,10 @@
-<ul>List of Meal Times and Items:
+List of Meal Times and Items:
 <br></br>
-<% @user.meals.each do |meal| %>
-<ul><li><%= meal.name %> - <%= meal.calories %> calories</li></ul>
-  <br>
+<ul><% @user.meals.sort_by { |m| m.name }.each do |meal| %>
+  <li><%= meal.name %> - <%= meal.calories %> calories</li>
+    <% meal.days.each do |day| %>
+      <%= day.date %> - <%= day.meal_time %>
+      <br>
+    <% end %>
+    <br>
 <% end %></ul>

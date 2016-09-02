@@ -21,7 +21,7 @@ class MealController < ApplicationController
 
   post "/meals/:id" do
     user = User.find(params[:id])
-    binding.pry
+    # binding.pry
     if (params[:meal][:name].empty? || params[:meal][:calories].empty?)
       flash[:message] = "Meal information incomplete."
       redirect to "/meals/new/#{user.slug}"

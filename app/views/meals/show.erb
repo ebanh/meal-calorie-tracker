@@ -6,8 +6,10 @@
   <li><%= meal.name %> - <%= meal.calories %> calories
   <font size=1><a href="/meals/<%= meal.meal_slug %>/edit/<%= meal.user.slug %>">edit</a></font></li>
     <% meal.days.sort_by { |d| d.date}.reverse.each do |day| %>
-      <font size=2><i><%= day.date %> - <%= day.meal_time %></i></font>
+      <font size=2><i><a href="/days/<%= day.date_slug %>/<%= @user.slug %>"><%= day.date %></a> - <%= day.meal_time %></i></font>
       <br>
     <% end %>
     <br>
 <% end %></ul>
+
+<a href="#"></a>

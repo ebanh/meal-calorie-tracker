@@ -58,5 +58,13 @@ class ApplicationController < Sinatra::Base
       week_meals.each { |meal| week_calories += meal.calories}
       week_calories
     end
+
+    def remove_days_without_meals
+      Day.all.each do |day|
+        if day.meal_ids.empty?
+          day.delete
+        end
+      end
+    end
   end
 end

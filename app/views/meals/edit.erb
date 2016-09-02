@@ -1,3 +1,19 @@
-<p>&emsp;<a href="/meals/<%= @meal.user.slug %>">Home</a>
-&emsp;<a href="/meals/show/<%= @meal.user.slug %>">Return</a></p>
-Edit page
+<p>&emsp;<a href="/tracker/<%= @user.slug %>">Home</a>
+&emsp;<a href="/meals/show/<%= @user.slug %>">Return</a></p>
+<h4>Meal Edit Page:</h4>
+
+<form action="/meals/<%= @meal.id %>/edit" method="post">
+  <input type="hidden" id="hidden" name="_method" value="PATCH">
+  <label for="name">Name:</label>
+  <input type="text" name="name" id="name" value="<%= @meal.name %>">
+  <br></br>
+  <label for="calories">Calories:</label>
+  <input type="integer" name="calories" id="calories" value="<%= @meal.calories %>">
+  <br></br>
+  <input type="submit" value="Update Meal">
+</form>
+<br>
+<form action="/meals/<%= @meal.id %>/delete" method="post">
+  <input type="hidden" id="hidden" name="_method" value="DELETE">
+  <input type="submit" value="DELETE">
+</form>

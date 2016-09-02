@@ -2,7 +2,7 @@ require "pry"
 
 class MealController < ApplicationController
 
-  get "/meals/:slug" do
+  get "/tracker/:slug" do
     redirect_if_not_logged_in
     @user = User.find_by_slug(params[:slug])
     @date = Time.now
@@ -16,7 +16,7 @@ class MealController < ApplicationController
     redirect_if_not_logged_in
     @user = User.find_by_slug(params[:slug])
     redirect_if_incorrect_user(@user)
-    erb :"meals/new"
+    erb :"/meals/new"
   end
 
   post "/meals/:id" do
@@ -35,13 +35,26 @@ class MealController < ApplicationController
     erb :"/meals/show"
   end
 
-  get "/meals/:meal_slug/:slug/edit" do
+  get "/meals/:meal_slug/edit/:slug" do
+    # binding.pry
     redirect_if_not_logged_in
     @meal = Meal.find_by_meal_slug(params[:meal_slug])
-    user = @meal.user
-    redirect_if_incorrect_user(user)
-
+    @user = User.find_by_slug(params[:slug])
+    redirect_if_incorrect_user(@user)
     erb :"/meals/edit"
   end
 
+  patch "/meals/:id/edit" do
+    meal = Meal.find(params[:id])
+    meal.update(name: params[:name], calories: params[:calories])
+    redirect to "/meals/show/#{meal.user.slug}"
+  end
+
+  delete "/meals/:id/delete" do
+    meal = Meal.find(params[:id])
+    user = current_user
+    meal.delete
+    remove_days_without_meals
+    redirect to "/meals/show/#{user.slug}"
+  end
 end

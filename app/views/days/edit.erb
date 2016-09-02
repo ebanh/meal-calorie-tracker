@@ -1,3 +1,32 @@
-<p>&emsp;<a href="/meals/<%= @date.user.slug %>">Home</a>
-&emsp;<a href="/days/show/<%= @date.user.slug %>">Return</a></p>
-Day Edit Page
+<p>&emsp;<a href="/tracker/<%= @user.slug %>">Home</a>
+&emsp;<a href="/days/show/<%= @user.slug %>">Return</a></p>
+<h4>Day Edit Page:</h4>
+
+<form action="/days/<%= @day.id %>/edit" method="post">
+  <input type="hidden" id="hidden" name="_method" value="PATCH">
+  <label for="date">Date:</label>
+  <input type="date" name="date" id="date" value="<%= @day.date %>" required>
+  <br></br>
+  <input type="radio" name="day[meal_time]" value="Breakfast" id="breakfast" required
+  <%= "checked" if @day.meal_time == "Breakfast" %>>
+  <label for="breakfast">Breakfast</label>
+
+  <input type="radio" name="day[meal_time]" value="Lunch" id="lunch" required
+  <%= "checked" if @day.meal_time == "Lunch" %>>
+  <label for="lunch">Lunch</label>
+
+  <input type="radio" name="day[meal_time]" value="Dinner" id="dinner" required
+  <%= "checked" if @day.meal_time == "Dinner" %>>
+  <label for="dinner">Dinner</label>
+
+  <input type="radio" name="day[meal_time]" value="Snack" id="snack" required
+  <%= "checked" if @day.meal_time == "Snack" %>>
+  <label for="snack">Snack</label>
+  <br></br>
+  <input type="submit" value="Update Meal">
+</form>
+<br>
+<form action="/days/<%= @day.id %>/delete" method="post">
+  <input type="hidden" id="hidden" name="_method" value="DELETE">
+  <input type="submit" value="DELETE">
+</form>

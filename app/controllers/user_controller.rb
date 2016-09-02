@@ -4,7 +4,7 @@ class UserController < ApplicationController
     if !logged_in?
       erb :"/users/login"
     else
-      redirect to "/meals/#{current_user.slug}"
+      redirect to "/tracker/#{current_user.slug}"
     end
   end
 
@@ -12,7 +12,7 @@ class UserController < ApplicationController
     user = User.find_by(username: params[:username])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect to "/meals/#{user.slug}"
+      redirect to "/tracker/#{user.slug}"
     else
       flash[:message] = "Incorrect username/ password combination"
       redirect to "/login"
@@ -21,7 +21,7 @@ class UserController < ApplicationController
 
   get '/signup' do
     if logged_in?
-      redirect to "/#{current_user.slug}"
+      redirect to "/tracker/#{current_user.slug}"
     else
       erb :"/users/signup"
     end
@@ -38,7 +38,7 @@ class UserController < ApplicationController
     user = User.create(params)
     session[:user_id] = user.id
     if user.save
-      redirect to "/meals/#{user.slug}"
+      redirect to "/tracker/#{user.slug}"
     else
       flash[:message] = "please fill out the entire form to create your account"
       redirect to "/signup"

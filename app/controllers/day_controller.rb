@@ -26,7 +26,7 @@ class DayController < ApplicationController
     user = current_user
     day.delete
     remove_meals_without_days
-    redirect to "/meals/show/#{user.slug}"
+    redirect to "/days/show/#{user.slug}"
   end
 
 end

@@ -27,7 +27,7 @@ class MealController < ApplicationController
       meal ||= user.meals.create(params[:meal])
       day.meals << meal
     end
-    day.meal_ids << params[:day][:meal_ids] unless params[:day][:meal_ids].empty?
+    day.meal_ids << params[:day][:meal_ids]
     redirect to "/meals/show/#{user.slug}"
   end
 
@@ -39,7 +39,6 @@ class MealController < ApplicationController
   end
 
   get "/meals/:meal_slug/edit/:slug" do
-    # binding.pry
     redirect_if_not_logged_in
     @meal = Meal.find_by_meal_slug(params[:meal_slug])
     @user = User.find_by_slug(params[:slug])

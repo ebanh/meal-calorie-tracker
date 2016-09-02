@@ -1,0 +1,16 @@
+<p>&emsp;<a href="/tracker/<%= @user.slug %>">Home</a>
+&emsp;<a href="/days/show/<%= @user.slug %>">Day List</a></p>
+Daily calories
+
+<h4><%= @day.date.strftime("%B %d, %Y") %></h4>
+<h5>Calories: <%= @total_calories %></h5>
+
+<% Day.all.each do |day|  %>
+  <% if day.date == @day.date%>
+  <ul> <li> <%= day.meal_time %></li>
+    <% day.meals.each do |meal| %>
+      <i><%= meal.name %> - <%= meal.calories %></i>
+      <br>
+    <% end %>
+  <% end%> </ul>
+<% end %>

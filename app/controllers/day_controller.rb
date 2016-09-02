@@ -9,10 +9,19 @@ class DayController < ApplicationController
 
   get "/days/:date_slug/edit/:slug" do
     redirect_if_not_logged_in
-    @day = Day.find_by_date_slug(params[:date_slug])
     @user = User.find_by_slug(params[:slug])
     redirect_if_incorrect_user(@user)
+    @day = Day.find_by_date_slug(params[:date_slug])
     erb :"/days/edit"
+  end
+
+  get "/days/:date_slug/:slug" do
+    redirect_if_not_logged_in
+    @user = User.find_by_slug(params[:slug])
+    redirect_if_incorrect_user(@user)
+    @day = Day.find_by_date_slug(params[:date_slug])
+    @total_calories = total_calories(@user, @day.date)
+    erb :"days/daily"
   end
 
   patch "/days/:id/edit" do

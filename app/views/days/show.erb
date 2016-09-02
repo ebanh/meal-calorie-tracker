@@ -3,11 +3,11 @@
 <h4>Days and Meal Items:</h4>
 
 <ul><% @user.days.sort_by { |d| d.date }.reverse.each do |day| %>
-  <li><a href="/days/<%= day.date_slug %>/<%= @user.slug %>"><%= day.date %></a> - <%= day.meal_time %>
-  <font size=1><a href="/days/<%= day.date_slug %>/edit/<%= day.user.slug %>">edit</a></font></li>
-    <% day.meals.each do |meal| %>
-      <font size=2><i><%= meal.name %> - <%= meal.calories %></i></font>
-      <br>
-    <% end %>
+    <li><a href="/days/<%= day.date_slug %>/<%= @user.slug %>"><%= day.date %></a> - <%= day.meal_time %>
+    <font size=1><a href="/days/<%= day.date_slug %>/edit/<%= day.user.slug %>">edit</a></font></li>
+      <% day.meals.each do |meal| %>
+        <font size=2><i><%= meal.name %> - <%= meal.calories %></i></font>
+        <br>
+      <% end %>
     <br>
 <% end %></ul>

@@ -5,7 +5,7 @@ Daily calories
 <h4><%= @day.date.strftime("%B %d, %Y") %></h4>
 <h5>Calories: <%= @total_calories %></h5>
 
-<% Day.all.each do |day|  %>
+<% @user.days.all.each do |day|  %>
   <% if day.date == @day.date%>
   <ul> <li> <%= day.meal_time %></li>
     <% day.meals.each do |meal| %>

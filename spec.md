@@ -9,7 +9,7 @@ Specs:
 - [x] Ensure that users can't modify content created by other users- (validates user is the current user before allowing to modify)
 - [x] Include user input validations - (used validates_presence_of or required field in forms)
 - [x] Display validation failures to user with error message (I use flash messages in several areas and required field in forms)
-- [ ] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
+- [x] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
 
 Confirm
 - [x] You have a large number of small Git commits

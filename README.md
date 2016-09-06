@@ -3,8 +3,8 @@
 This application allows you to track your daily meal and calorie intake. 
 
 To use this app, please do the following:
-- clone from git hub
-- cd to app folder
+- clone from github - https://github.com/ebanh/meal-calorie-tracker
+- cd to app's folder
 - run rake db:migrate
 - run shotgun
 
